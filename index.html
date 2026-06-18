@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="HUANGFANG CHINESE - Nền tảng học tiếng Trung HSK, flashcards, writing practice, quiz và admin CMS." />
+  <title>HUANGFANG CHINESE | 黄芳中文</title>
+  <style>
+    :root{
+      --primary:#00013D;
+      --secondary:#2347FF;
+      --accent:#5D7DFF;
+      --bg:#f6f8ff;
+      --card:rgba(255,255,255,.82);
+      --text:#0f172a;
+      --muted:#64748b;
+      --border:rgba(35,71,255,.16);
+      --shadow:0 24px 70px rgba(0,1,61,.16);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at top left,#dfe7ff 0,#f6f8ff 35%,#fff 100%);color:var(--text)}
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(1120px,calc(100% - 32px));margin:auto}
+    header{position:sticky;top:0;z-index:10;background:rgba(246,248,255,.78);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:900;color:var(--primary)}
+    .logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--primary),var(--secondary));display:grid;place-items:center;color:white;box-shadow:0 14px 32px rgba(35,71,255,.3)}
+    .links{display:flex;gap:18px;font-size:14px;color:#334155}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:12px 18px;font-weight:800;cursor:pointer;background:var(--secondary);color:#fff;box-shadow:0 14px 28px rgba(35,71,255,.26)}
+    .btn.secondary{background:#fff;color:var(--primary);border:1px solid var(--border);box-shadow:none}
+    .hero{padding:72px 0 44px;display:grid;grid-template-columns:1.06fr .94fr;gap:34px;align-items:center}
+    .badge{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--border);background:rgba(255,255,255,.72);border-radius:999px;padding:8px 12px;color:var(--secondary);font-weight:800;font-size:13px}
+    h1{font-size:clamp(42px,7vw,78px);line-height:.95;margin:18px 0;color:var(--primary);letter-spacing:-.055em}
+    .tagline{font-size:24px;color:var(--secondary);font-weight:900;margin:0 0 10px}
+    .lead{font-size:18px;line-height:1.75;color:#475569;margin:0 0 28px;max-width:640px}
+    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:22px}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}
+    .stat{padding:16px;border:1px solid var(--border);border-radius:22px;background:rgba(255,255,255,.72)}
+    .stat b{display:block;color:var(--primary);font-size:24px}.stat span{font-size:13px;color:var(--muted)}
+    .phone{border-radius:38px;padding:18px;background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.55));box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.8)}
+    .screen{border-radius:28px;overflow:hidden;background:var(--primary);color:#fff;min-height:560px;position:relative}
+    .screen:before{content:"";position:absolute;inset:-80px -30px auto auto;width:240px;height:240px;background:var(--accent);filter:blur(30px);opacity:.55;border-radius:50%}
+    .screen-inner{position:relative;padding:24px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:26px;padding:22px;box-shadow:0 14px 36px rgba(15,23,42,.06)}
+    .dark-card{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:24px;padding:18px;margin-top:14px}
+    .hanzi{font-size:64px;font-weight:900}.pinyin{color:#c7d2fe;font-weight:800}.meaning{color:#e2e8f0}
+    section{padding:54px 0}.section-title{font-size:38px;letter-spacing:-.03em;color:var(--primary);margin:0 0 12px}.section-sub{color:var(--muted);line-height:1.7;margin:0 0 28px;max-width:720px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.feature h3{margin:0 0 8px;color:var(--primary)}.feature p{margin:0;color:var(--muted);line-height:1.65}.icon{width:46px;height:46px;border-radius:16px;background:#eef2ff;display:grid;place-items:center;color:var(--secondary);font-weight:900;margin-bottom:14px}
+    .hsk-demo{display:grid;grid-template-columns:320px 1fr;gap:18px}.filters{display:grid;gap:10px}.pill{padding:12px 14px;border:1px solid var(--border);border-radius:16px;background:#fff;color:#334155;font-weight:800}.pill.active{background:var(--primary);color:white}.vocab-list{display:grid;gap:12px}.vocab{display:grid;grid-template-columns:76px 1fr auto;gap:14px;align-items:center}.vocab .ch{font-size:32px;font-weight:900;color:var(--primary)}.vocab small{color:var(--muted)}
+    .steps{counter-reset:step;display:grid;gap:14px}.step{display:flex;gap:14px;align-items:flex-start}.step:before{counter-increment:step;content:counter(step);width:34px;height:34px;border-radius:50%;background:var(--secondary);color:#fff;display:grid;place-items:center;font-weight:900;flex:0 0 auto}.step b{color:var(--primary)}.step p{margin:4px 0 0;color:var(--muted);line-height:1.6}
+    .cta{background:linear-gradient(135deg,var(--primary),#11157d,var(--secondary));color:#fff;border-radius:34px;padding:36px;display:flex;justify-content:space-between;gap:20px;align-items:center}.cta h2{margin:0 0 8px;font-size:34px}.cta p{margin:0;color:#dbeafe}.cta .btn{background:#fff;color:var(--primary)}
+    footer{padding:36px 0;color:#64748b;border-top:1px solid var(--border)}
+    @media(max-width:860px){.hero,.hsk-demo{grid-template-columns:1fr}.links{display:none}.grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr}.cta{display:block}.cta .btn{margin-top:18px}.screen{min-height:460px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <nav>
+        <a href="#top" class="brand"><span class="logo">黄</span><span>HUANGFANG CHINESE</span></a>
+        <div class="links">
+          <a href="#features">Tính năng</a><a href="#hsk">HSK</a><a href="#deploy">Deploy</a><a href="#contact">Liên hệ</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    <section class="hero">
+      <div>
+        <span class="badge">🚀 Public Demo • GitHub Pages Ready</span>
+        <h1>HUANGFANG CHINESE</h1>
+        <p class="tagline">黄芳中文 — 千里之行，始于足下</p>
+        <p class="lead">Nền tảng học tiếng Trung hiện đại dành cho HSK, từ vựng, flashcards, luyện viết, quiz, gamification và quản trị nội dung. Đây là bản HTML demo công khai để đưa lên GitHub Pages nhanh nhất.</p>
+        <div class="actions">
+          <a class="btn" href="#hsk">Xem demo HSK</a>
+          <a class="btn secondary" href="#deploy">Hướng dẫn đưa lên GitHub</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>HSK 1–9</b><span>Hệ thống từ vựng</span></div>
+          <div class="stat"><b>CMS</b><span>Quản trị nội dung</span></div>
+          <div class="stat"><b>PWA</b><span>Mobile-first design</span></div>
+        </div>
+      </div>
+      <div class="phone">
+        <div class="screen">
+          <div class="screen-inner">
+            <div class="badge" style="background:rgba(255,255,255,.12);color:white;border-color:rgba(255,255,255,.18)">Today's word</div>
+            <div class="dark-card">
+              <div class="hanzi">学习</div>
+              <div class="pinyin">xué xí</div>
+              <p class="meaning">Học tập • to study, to learn</p>
+            </div>
+            <div class="dark-card">
+              <b>Ví dụ</b>
+              <p class="meaning">我每天学习中文。<br/>Tôi học tiếng Trung mỗi ngày.</p>
+            </div>
+            <div class="dark-card">
+              <b>Tiến độ hôm nay</b>
+              <p class="meaning">12 từ đã học • 3 từ cần ôn lại • Streak 7 ngày</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <h2 class="section-title">Một nền tảng học tiếng Trung đầy đủ</h2>
+      <p class="section-sub">Thiết kế theo hướng SaaS giáo dục: người học có trải nghiệm rõ ràng, giáo viên/admin có dashboard quản trị nội dung, từ vựng, quiz và người dùng.</p>
+      <div class="grid">
+        <div class="card feature"><div class="icon">字</div><h3>HSK Vocabulary</h3><p>Tìm kiếm theo Hán tự, pinyin, nghĩa tiếng Việt/Anh, lọc HSK1–HSK9, phân trang và xem chi tiết.</p></div>
+        <div class="card feature"><div class="icon">★</div><h3>Student Progress</h3><p>Yêu thích, đánh dấu đã học, lưu lại để ôn tập sau và theo dõi tiến độ học tập.</p></div>
+        <div class="card feature"><div class="icon">⚙</div><h3>Admin CMS</h3><p>Quản lý từ vựng, nội dung, người dùng, quyền hạn, media và cài đặt từ dashboard.</p></div>
+        <div class="card feature"><div class="icon">🔊</div><h3>Pronunciation</h3><p>Hỗ trợ audio pronunciation hoặc fallback bằng trình đọc giọng nói của trình duyệt.</p></div>
+        <div class="card feature"><div class="icon">✍</div><h3>Writing Practice</h3><p>Không gian luyện viết chữ Hán, phù hợp cho học viên dùng chuột hoặc cảm ứng.</p></div>
+        <div class="card feature"><div class="icon">🏆</div><h3>Gamification</h3><p>XP, coins, level, badges, leaderboard và daily check-in để tăng động lực học.</p></div>
+      </div>
+    </section>
+
+    <section id="hsk">
+      <h2 class="section-title">Demo giao diện HSK Learning</h2>
+      <p class="section-sub">Bản full Next.js dùng PostgreSQL/Prisma để lấy dữ liệu thật. File HTML này là landing demo tĩnh để public nhanh qua GitHub Pages.</p>
+      <div class="hsk-demo">
+        <div class="card filters">
+          <div class="pill active">HSK 1</div><div class="pill">HSK 2</div><div class="pill">HSK 3</div><div class="pill">HSK 4</div><div class="pill">HSK 5–9</div>
+        </div>
+        <div class="card vocab-list">
+          <div class="vocab"><div class="ch">你</div><div><b>nǐ</b><br><small>bạn, anh, chị • you</small></div><span>♡</span></div>
+          <div class="vocab"><div class="ch">好</div><div><b>hǎo</b><br><small>tốt, khỏe • good</small></div><span>✓</span></div>
+          <div class="vocab"><div class="ch">中文</div><div><b>zhōng wén</b><br><small>tiếng Trung • Chinese language</small></div><span>⏰</span></div>
+          <div class="vocab"><div class="ch">老师</div><div><b>lǎo shī</b><br><small>giáo viên • teacher</small></div><span>♡</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="deploy">
+      <h2 class="section-title">Cách đưa file này lên GitHub Pages</h2>
+      <div class="card steps">
+        <div class="step"><div><b>Tạo repository mới trên GitHub</b><p>Ví dụ đặt tên repo là <code>huangfang-chinese-demo</code>.</p></div></div>
+        <div class="step"><div><b>Upload file này</b><p>Đổi tên file thành <code>index.html</code> nếu chưa đúng, rồi upload vào repository.</p></div></div>
+        <div class="step"><div><b>Bật GitHub Pages</b><p>Vào Settings → Pages → Deploy from branch → chọn branch <code>main</code> và folder <code>/root</code>.</p></div></div>
+        <div class="step"><div><b>Mở link công khai</b><p>GitHub sẽ tạo link dạng <code>https://username.github.io/huangfang-chinese-demo/</code>.</p></div></div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="cta">
+        <div>
+          <h2>HUANGFANG CHINESE</h2>
+          <p>Owned by Huỳnh Phương • Demo public landing page for GitHub Pages.</p>
+        </div>
+        <a class="btn" href="mailto:nguyenthihuynhphuong2909@gmail.com">Liên hệ</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">© <span id="year"></span> HUANGFANG CHINESE 黄芳中文. All rights reserved.</div>
+  </footer>
+  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+</body>
+</html>
